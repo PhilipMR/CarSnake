@@ -1,21 +1,29 @@
 extends Node2D
-export (PackedScene) var Level1
+export(Array, PackedScene) var Levels
 
-func _ready():
-	$Level_Prototype.connect("level_completed", self, "_on_level_completed", ["proto"])
-	$Level_Prototype.connect("level_failed",    self, "_on_level_failed")
+var current_level_idx : int
+
+func load_level(idx):
+	var level = Levels[idx].instance()
+	level.connect("level_completed", self, "_on_level_completed", [level])
+	level.connect("level_failed",    self, "_on_level_failed")
+	add_child(level)
 	
-func _on_level_completed(name):
-	if name == "proto":
+func _ready():
+	current_level_idx = 0
+	load_level(current_level_idx)
+	
+func _on_level_completed(level):
+	var completed_all = ((current_level_idx+1) == Levels.size())
+	if completed_all:
+		$UI/FinishOverlay.set_visible(true)
+	else:
 		for obj in $_TempObjects.get_children():
 			obj.queue_free()
-		$Level_Prototype.queue_free()
-		var next = Level1.instance()
-		next.connect("level_completed", self, "_on_level_completed", ["Level1"])
-		next.connect("level_failed",    self, "_on_level_failed")
-		add_child(next)
-	else:
-		$UI/FinishOverlay.set_visible(true)
+		level.queue_free()
+		
+		current_level_idx += 1
+		load_level(current_level_idx)
 	
 func _on_level_failed():
 	$UI/CrashOverlay.set_visible(true)
