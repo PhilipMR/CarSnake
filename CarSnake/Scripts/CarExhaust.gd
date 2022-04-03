@@ -26,7 +26,7 @@ func _process(delta):
 		var smoke = SmokeParticle.instance()
 		smoke.set_position(get_global_position())
 		smoke.set_emission_dir(dir)
-		tree_root.add_child(smoke)
+		tree_root.get_node("_TempObjects").add_child(smoke)
 	
 	var smoke_speed_multiplier = 1.0
 	if car.get_speed() > 0.0:
