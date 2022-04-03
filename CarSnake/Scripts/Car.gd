@@ -3,6 +3,10 @@ extends Node2D
 signal crashed_into_tail
 signal crashed_out_of_bounds
 
+export(float) var INITIAL_SPEED_MULTIPLIER     = 1.0
+export(float) var INCREMENTAL_SPEED_MULTIPLIER = 1.0
+export(float) var INITIAL_TAIL_CAPACITY        = 15
+export(float) var INCREMENTAL_TAIL_CAPACITY    = 7
 
 const INITIAL_MOVE_SPEED       = 50.0  # The movement speed that the car starts out with.
 const INITIAL_TURN_SPEED       = 50.0  # The turning speed that the car starts out with.
@@ -14,8 +18,8 @@ const DRIFT_TURN_THRESHOLD     = 115.0 # The minimal average turning speed requi
 
 
 var forward_dir          : Vector2
-var speed                = INITIAL_MOVE_SPEED
-var turn_speed           = INITIAL_TURN_SPEED
+onready var speed        = INITIAL_MOVE_SPEED * INITIAL_SPEED_MULTIPLIER
+onready var turn_speed   = INITIAL_TURN_SPEED * INITIAL_SPEED_MULTIPLIER
 var turn_degrees         = 0.0
 
 var was_drifting         = false
@@ -23,6 +27,10 @@ var is_driving           = true
 var is_turning_left      = false
 var is_turning_right     = false
 
+# [ENGINE CALLBACK]
+func _ready():
+	$CarTail.set_tail_capacity(INITIAL_TAIL_CAPACITY)
+	$CarTail.set_tail_incremental(INCREMENTAL_TAIL_CAPACITY)
 
 # [PUBLIC]
 func get_speed():
@@ -50,8 +58,8 @@ func set_turning_right(tright):
 
 # [PUBLIC]	
 func pickup_wheel():
-	speed      += MOVE_SPEED_INC_PER_WHEEL
-	turn_speed += TURN_SPEED_INC_PER_WHEEL
+	speed      += MOVE_SPEED_INC_PER_WHEEL * INCREMENTAL_SPEED_MULTIPLIER
+	turn_speed += TURN_SPEED_INC_PER_WHEEL * INCREMENTAL_SPEED_MULTIPLIER
 	$CarTail.increase_length()
 
 # [PUBLIC]

@@ -1,8 +1,7 @@
 extends Node2D
 export (PackedScene) var SmokeParticle
 
-
-const SECONDS_PER_SMOKE_EMIT =  0.2 # Scales (inversely) with the car's speed
+const SECONDS_PER_SMOKE_EMIT = 0.2 # Scales (inversely) with the car's speed
 
 onready var car = get_parent()
 var time_till_smoke_emit = SECONDS_PER_SMOKE_EMIT

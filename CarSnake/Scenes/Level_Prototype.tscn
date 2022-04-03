@@ -41,3 +41,6 @@ margin_bottom = 327.0
 
 [node name="Car" parent="." index="12"]
 position = Vector2( 502, 478 )
+INITIAL_SPEED_MULTIPLIER = 3.0
+INCREMENTAL_SPEED_MULTIPLIER = 2.0
+INITIAL_TAIL_CAPACITY = 5.0

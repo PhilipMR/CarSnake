@@ -1,19 +1,17 @@
 extends Node2D
 
 
-const CAR_TAIL_SECONDS_PER_SAMPLE     = 0.1     # The frequency at which the car's position is sampled.
-const CAR_TAIL_INITIAL_CAPACITY       = 15      # The capacity for the samples.
-const CAR_TAIL_CAPACITY_PER_WHEEL     = 7       # The capacity/tail growth rate.
-const CAR_TAIL_THICKNESS              = 20.0    # The line thicknes of the tail.
+const CAR_TAIL_SECONDS_PER_SAMPLE   = 0.1   # The frequency at which the car's position is sampled.
+const CAR_TAIL_THICKNESS            = 20.0  # The line thicknes of the tail.
 
-const DRIFT_TRACK_THICKNESS            = 2.5    # The line thickness of the drift tracks.
-const DRIFT_HORIZONTAL_WHEEL_OFFSET    = 17     # The horizontal offset from the car's center to the side.
-const DRIFT_VERTICAL_WHEEL_OFFSET      = 20     # The vertical offset from the car's center to its rear.
+const DRIFT_TRACK_THICKNESS         = 2.5  # The line thickness of the drift tracks.
+const DRIFT_HORIZONTAL_WHEEL_OFFSET = 17   # The horizontal offset from the car's center to the side.
+const DRIFT_VERTICAL_WHEEL_OFFSET   = 20   # The vertical offset from the car's center to its rear.
 
-const IGNORE_TAIL_COLLISION_AMOUNT     = 15     # The number of (most recent) points to ignore when checking
-												#   if the car is colliding with its own tail.
-const CAR_BOX_HWIDTH                   = 20.0   # The half width of the car (for testing tail collision).
-const CAR_BOX_HHEIGHT                  = 20.0   # The half height of the car (for testing tail collision).
+const IGNORE_TAIL_COLLISION_AMOUNT  = 15   # The number of (most recent) points to ignore when checking
+										   #   if the car is colliding with its own tail.
+const CAR_BOX_HWIDTH                = 20.0 # The half width of the car (for testing tail collision).
+const CAR_BOX_HHEIGHT               = 20.0 # The half height of the car (for testing tail collision).
 
 
 onready var car               = get_parent()
@@ -21,8 +19,28 @@ var last_tail_points          = []
 var last_drift_left_points    = []
 var last_drift_right_points   = []
 var time_till_record_position = CAR_TAIL_SECONDS_PER_SAMPLE
-var car_tail_capacity         = CAR_TAIL_INITIAL_CAPACITY
+var car_tail_capacity         = 0 # The capacity for the samples.  ###[Initialized from Car::_ready()]
+var car_tail_capacity_incr    = 0 # The capacity/tail growth rate. ###[Initialized from Car::_ready()]
 
+
+# [PUBLIC]
+# Sets the capacity for the tail's sample buffer.
+#  The capacity is directly proportional to the tail's length.
+# [capacity: int] - The new capacity
+func set_tail_capacity(capacity: int):
+	if capacity < car_tail_capacity:
+		var diff = car_tail_capacity - capacity
+		last_tail_points        = last_tail_points       .slice(diff, car_tail_capacity, false) # true?
+		last_drift_left_points  = last_drift_left_points .slice(diff, car_tail_capacity, false) # true?
+		last_drift_right_points = last_drift_right_points.slice(diff, car_tail_capacity, false) # true?
+	car_tail_capacity = capacity
+	
+# [PUBLIC]
+# Sets the incremental capacity for the tail's sample buffer.
+#  In other words, how much the tail's length grows on pickup.
+# [incr: int] - The amount by which the capacity extends on pickup.
+func set_tail_incremental(incr: int):
+	car_tail_capacity_incr = incr
 
 # [PUBLIC]
 # Determines whether or not a given object (box) collides with the tail.
@@ -66,7 +84,7 @@ func get_right_drift_points():
 # [PUBLIC]
 # Increases the length of the tail by the amount corresponding to one pick-up.
 func increase_length():
-	car_tail_capacity += CAR_TAIL_CAPACITY_PER_WHEEL
+	car_tail_capacity += car_tail_capacity_incr
 
 
 # [ENGINE CALLBACK]
