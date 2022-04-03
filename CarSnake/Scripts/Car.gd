@@ -1,24 +1,44 @@
 extends Node2D
 
-export (PackedScene) var SmokeParticle
+signal crashed_into_tail
+signal crashed_out_of_bounds
 
-const INITIAL_SPEED          = 50.0
-const INITIAL_TURN_SPEED     = 50.0
-const ACCELERATION_PER_WHEEL = 20.0
-const TORQUE_PER_WHEEL       = 20.0 
-const SECONDS_PER_SMOKE_EMIT =  0.2   # Scales (inversely) with speed
-const DRIFT_TURN_THRESHOLD   = 115.0
+
+const INITIAL_MOVE_SPEED       = 50.0  # The movement speed that the car starts out with.
+const INITIAL_TURN_SPEED       = 50.0  # The turning speed that the car starts out with.
+const MOVE_SPEED_INC_PER_WHEEL = 20.0  # The movement speed increase per picked-up wheel. 
+const TURN_SPEED_INC_PER_WHEEL = 20.0  # The turning speed increase per picked-up wheel.
+const CAR_HWIDTH               = 20.0  # The car's half-width (used in tail-collision checking)
+const CAR_HHEIGHT              = 20.0  # The car's half-height (used in tail-collision checking)
+const DRIFT_TURN_THRESHOLD     = 115.0 # The minimal average turning speed required to drift.  
+
 
 var forward_dir          : Vector2
-var speed                = INITIAL_SPEED
+var speed                = INITIAL_MOVE_SPEED
 var turn_speed           = INITIAL_TURN_SPEED
-var turn_degrees         = 0
-var time_till_smoke_emit = SECONDS_PER_SMOKE_EMIT
+var turn_degrees         = 0.0
+
 var was_drifting         = false
 var is_driving           = true
 var is_turning_left      = false
 var is_turning_right     = false
 
+
+# [PUBLIC]
+func get_speed():
+	return speed
+
+# [PUBLIC]
+func get_tail_points():
+	return $CarTail.get_tail_points()
+	
+# [PUBLIC]
+func get_left_drift_points():
+	return $CarTail.get_left_drift_points()
+	
+# [PUBLIC]
+func get_right_drift_points():
+	return $CarTail.get_right_drift_points()
 
 # [PUBLIC]
 func set_turning_left(tleft):
@@ -29,14 +49,14 @@ func set_turning_right(tright):
 	is_turning_right = tright
 
 # [PUBLIC]	
-func increase_speed():
-	speed      += ACCELERATION_PER_WHEEL
-	turn_speed += TORQUE_PER_WHEEL
+func pickup_wheel():
+	speed      += MOVE_SPEED_INC_PER_WHEEL
+	turn_speed += TURN_SPEED_INC_PER_WHEEL
+	$CarTail.increase_length()
 
-# [PUBLIC]	
-func is_within_bounds():
-	var xformed_car_rect = $CarSprite.get_global_transform().xform($CarSprite.get_rect())
-	return get_viewport().get_visible_rect().intersects(xformed_car_rect)
+# [PUBLIC]
+func is_driving():
+	return self.is_driving
 
 # [PUBLIC]
 func stop_driving():
@@ -67,20 +87,6 @@ func get_forward_dir():
 	return forward_dir 
 
 
-# [PRIVATE]
-func emit_smoke(delta, dir):
-	time_till_smoke_emit -= delta
-	if time_till_smoke_emit <= 0:
-		time_till_smoke_emit = SECONDS_PER_SMOKE_EMIT * (INITIAL_SPEED / speed)
-		var smokes_to_emit = (randi() % 2) + 1
-		for _i in range(0, smokes_to_emit):
-			var tree_root = get_tree().get_root().get_child(0)
-			var smoke = SmokeParticle.instance()
-			smoke.set_position($SmokeEmitter.get_global_position())
-			smoke.set_emission_dir(dir)
-			tree_root.add_child(smoke)
-
-
 # [PRIVATE]	
 const TURN_RATE_AVG_RING_SIZE = 20
 var avg_turn_rate        = 0.0
@@ -109,17 +115,18 @@ var driving_automatic_goal_i   = 0
 var driving_automatic_time     = 0.0
 var driving_automatic_duration = 0.0
 func drive_to_points(goal_points):
+	stop_drifting()
+	
 	is_driving_automatic     = true
 	driving_automatic_start  = position
 	driving_automatic_goals  = goal_points
 	driving_automatic_goal_i = 0
 	driving_automatic_time   = 0.0
 	
-	stop_drifting()
-	
 	var goal = driving_automatic_goals[driving_automatic_goal_i]
 	var distance = driving_automatic_start.distance_to(goal)
 	driving_automatic_duration = distance / DRIVING_AUTOMATIC_SPEED
+
 
 # [PRIVATE]
 func process_automatic_drive(delta):
@@ -130,9 +137,9 @@ func process_automatic_drive(delta):
 	if driving_automatic_duration > 0:
 		progress = min(1.0, driving_automatic_time / driving_automatic_duration)
 	var pos = lerp(driving_automatic_start, goal, progress)
-	var dir = (pos - get_position()).normalized()
+	self.forward_dir = (pos - get_position()).normalized()
 	set_position(pos)
-	set_rotation(atan2(dir.y, dir.x) + 0.5*PI)
+	set_rotation(atan2(forward_dir.y, forward_dir.x) + 0.5*PI)
 	if progress >= 1.0:
 		driving_automatic_goal_i += 1
 		if driving_automatic_goal_i >= driving_automatic_goals.size():		
@@ -144,10 +151,7 @@ func process_automatic_drive(delta):
 			goal = driving_automatic_goals[driving_automatic_goal_i]
 			var distance = driving_automatic_start.distance_to(goal)
 			driving_automatic_duration = distance / DRIVING_AUTOMATIC_SPEED
-			
-	# Emit smoke particles out the back of the car
-	emit_smoke(delta, -dir)
-	
+
 
 func process_controlled_drive(delta):
 	# Determine rotation
@@ -167,16 +171,22 @@ func process_controlled_drive(delta):
 	self.set_rotation(turn_rads - 0.5*PI)
 	
 	self.forward_dir = Vector2(-cos(turn_rads), -sin(turn_rads))
-	self.translate(forward_dir  * speed * delta)
-
-	# Emit smoke particles out the back of the car
-	emit_smoke(delta, -forward_dir)
+	self.translate(forward_dir * speed * delta)
 
 
 # [ENGINE CALLBACK]
 func _process(delta):
-	if !is_driving:
+	if !is_driving():
 		return
+		
+	var xformed_car_rect = $CarSprite.get_global_transform().xform($CarSprite.get_rect())
+	var is_out_of_bounds = !get_viewport().get_visible_rect().intersects(xformed_car_rect)
+	
+	if $CarTail.does_collide_with(get_position(), CAR_HWIDTH, CAR_HHEIGHT):
+		emit_signal("crashed_into_tail")
+	if is_out_of_bounds:
+		emit_signal("crashed_out_of_bounds")
+		
 	if self.is_driving_automatic:
 		process_automatic_drive(delta)
 	else:
