@@ -144,7 +144,7 @@ position = Vector2( 508, 153 )
 [node name="Wheel2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 363, 304 )
 
-[node name="Wheel_3" parent="." instance=ExtResource( 3 )]
+[node name="Wheel3" parent="." instance=ExtResource( 3 )]
 position = Vector2( 96, 530 )
 
 [node name="Wheel4" parent="." instance=ExtResource( 3 )]
