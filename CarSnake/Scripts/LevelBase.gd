@@ -1,11 +1,13 @@
 extends Node2D
 
+signal level_completed
+signal level_failed
 
-const       OUTRO_DRIVE_POINTS  = [Vector2(510, 100), Vector2(510, -50)]    # Points to auto-drive to after collecting all wheels.
-onready var SECONDS_PER_REDRAW  = $Car/CarTail.CAR_TAIL_SECONDS_PER_SAMPLE  # The tail/drfit redraw frequency.
-onready var CAR_TAIL_THICKNESS  = $Car/CarTail.CAR_TAIL_THICKNESS           # The thickness of the tail lines.
-onready var CAR_DRIFT_THICKNESS = $Car/CarTail.DRIFT_TRACK_THICKNESS        # The thickness of the drift lines.
-const       CAR_TAIL_COLOR      = Color(1, 0, 0)                            # The color of the car's tail.
+const       OUTRO_DRIVE_POINTS  = [Vector2(510, 100), Vector2(510, -50)]         # Points to auto-drive to after collecting all wheels.
+onready var SECONDS_PER_REDRAW  = $"../Car/CarTail".CAR_TAIL_SECONDS_PER_SAMPLE  # The tail/drfit redraw frequency.
+onready var CAR_TAIL_THICKNESS  = $"../Car/CarTail".CAR_TAIL_THICKNESS           # The thickness of the tail lines.
+onready var CAR_DRIFT_THICKNESS = $"../Car/CarTail".DRIFT_TRACK_THICKNESS        # The thickness of the drift lines.
+const       CAR_TAIL_COLOR      = Color(1, 0, 0)                                 # The color of the car's tail.
 
 var next_wheel_idx                  = 0
 var game_over                       = false
@@ -35,8 +37,8 @@ func _ready():
 			child.connect("hit_by_car", self, "_on_crashed", ["block"])
 	
 	# Connect the car's crash signals.
-	$Car.connect("crashed_into_tail",     self, "_on_crashed", ["tail"])
-	$Car.connect("crashed_out_of_bounds", self, "_on_crashed", ["bounds"])
+	$"../Car".connect("crashed_into_tail",     self, "_on_crashed", ["tail"])
+	$"../Car".connect("crashed_out_of_bounds", self, "_on_crashed", ["bounds"])
 	
 	# Start the game by revealing the first wheel.
 	reveal_next_wheel()
@@ -70,8 +72,8 @@ func crash():
 	if game_over:
 		return
 	game_over = true
-	$Car.stop_driving()
-	$CrashOverlay.set_visible(true) 
+	$"../Car".stop_driving()
+	emit_signal("level_failed")
 
 
 # [PRIVATE]
@@ -79,14 +81,14 @@ func finish():
 	if game_over:
 		return 
 	game_over = true 
-	$Car.connect("arrived_at_destination", self, "_on_car_outro_complete")
-	$Car.drive_to_points(OUTRO_DRIVE_POINTS)
+	$"../Car".connect("arrived_at_destination", self, "_on_car_outro_complete")
+	$"../Car".drive_to_points(OUTRO_DRIVE_POINTS)
 	
 	
 # [ENGINE SIGNAL CALLBACK]
 func _on_car_outro_complete():
-	$Car.stop_driving()
-	$FinishOverlay.set_visible(true)
+	$"../Car".stop_driving()
+	emit_signal("level_completed")
 	
 	
 # [ENGINE SIGNAL CALLBACK]
@@ -96,7 +98,7 @@ func _on_crashed(_how):
 	
 # [ENGINE SIGNAL CALLBACK]
 func _on_wheel_collected():
-	$Car.pickup_wheel()
+	$"../Car".pickup_wheel()
 	reveal_next_wheel()
 	
 	
@@ -114,7 +116,7 @@ func _on_warning_exited(_body, warn):
 # [ENGINE CALLBACK]
 func _draw():
 	# Nothing to do until tail exists.
-	var last_car_points = $Car.get_tail_points()
+	var last_car_points = $"../Car".get_tail_points()
 	if last_car_points.size() < 2:
 		return
 		
@@ -127,12 +129,12 @@ func _draw():
 	draw_polyline_colors(last_car_points, colors, CAR_TAIL_THICKNESS, true)
 	
 	# Draw left drifting tracks (if any).
-	var last_left_drift_points  = $Car.get_left_drift_points()
+	var last_left_drift_points  = $"../Car".get_left_drift_points()
 	if (last_left_drift_points.size() >= 2):
 		draw_polyline(last_left_drift_points,  Color.black, CAR_DRIFT_THICKNESS, true)
 		
 	# Draw right drifting tracks (if any).
-	var last_right_drift_points = $Car.get_right_drift_points()
+	var last_right_drift_points = $"../Car".get_right_drift_points()
 	if (last_right_drift_points.size() >= 2):
 		draw_polyline(last_right_drift_points, Color.black, CAR_DRIFT_THICKNESS, true)
 
@@ -152,11 +154,11 @@ func _process(delta):
 # [ENGINE CALLBACK]
 func _input(event):
 	if event.is_action_pressed("CarTurnLeft"):
-		$Car.set_turning_left(true)
+		$"../Car".set_turning_left(true)
 	elif event.is_action_released("CarTurnLeft"):
-		$Car.set_turning_left(false)
+		$"../Car".set_turning_left(false)
 	
 	if event.is_action_pressed("CarTurnRight"):
-		$Car.set_turning_right(true)
+		$"../Car".set_turning_right(true)
 	if event.is_action_released("CarTurnRight"):
-		$Car.set_turning_right(false)
+		$"../Car".set_turning_right(false)

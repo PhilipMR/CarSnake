@@ -49,33 +49,32 @@ func does_collide_with(pos: Vector2, hwidth: float, hheight: float):
 # Returns the most recently recorded tail points.
 func get_tail_points():
 	return last_tail_points
-	
-	
+
+
 # [PUBLIC]
 # Returns the most recently recorded left-wheel drifting points.
 func get_left_drift_points():
 	return last_drift_left_points
-	
-	
+
+
 # [PUBLIC]
 # Returns the most recently recorded left-wheel drifting points.
 func get_right_drift_points():
 	return last_drift_right_points
-	
+
 
 # [PUBLIC]
 # Increases the length of the tail by the amount corresponding to one pick-up.
 func increase_length():
-	car_tail_capacity += CAR_TAIL_CAPACITY_PER_WHEEL	
+	car_tail_capacity += CAR_TAIL_CAPACITY_PER_WHEEL
 
 
 # [ENGINE CALLBACK]
 func _process(delta):
 	# When starting a drift, clear the previous drift tracks.
-	if car.is_drifting():
-		if !car.was_drifting():
-			last_drift_left_points.clear()
-			last_drift_right_points.clear()
+	if car.is_drifting() and !car.was_drifting():
+		last_drift_left_points.clear()
+		last_drift_right_points.clear()
 	
 	# Wait until it's time to sample the tail again.
 	time_till_record_position -= delta
@@ -94,7 +93,7 @@ func _process(delta):
 		var car_left  = DRIFT_HORIZONTAL_WHEEL_OFFSET * car_fwd.rotated(0.5 * PI)
 		var car_right = DRIFT_HORIZONTAL_WHEEL_OFFSET * car_fwd.rotated(-0.5 * PI)
 		var car_back  = DRIFT_VERTICAL_WHEEL_OFFSET * -car_fwd
-
+	
 		# If turning clockwise, drift on left wheel, otherwise drift on right wheel.
 		if car.is_drifting_cw():
 			var left_track_point  = car_pos + car_back + car_left
