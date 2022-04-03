@@ -1,0 +1,289 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Objects/Car.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/MainScene.gd" type="Script" id=2]
+[ext_resource path="res://Objects/Wheel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Objects/SmokeParticle.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Objects/CrashOverlay.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Objects/FinishOverlay.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Objects/SolidBlock.tscn" type="PackedScene" id=7]
+
+[sub_resource type="Animation" id=1]
+resource_name = "BoundsWarning"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 3.86374, 3.24901, 0.0272047 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 0 ), Color( 1, 0, 0, 0.376471 ), Color( 1, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 0 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 15.5, 568.25 )
+
+[sub_resource type="Animation" id=8]
+resource_name = "BoundsWarning"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 3.86374, 3.24901, 0.0272047 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 0 ), Color( 1, 0, 0, 0.376471 ), Color( 1, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "BoundsWarning"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 0 ), Color( 1, 0, 0, 0.658824 ), Color( 1, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "BoundsWarning"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 0 ), Color( 1, 0, 0, 0.658824 ), Color( 1, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 0 ) ]
+}
+
+[node name="MainScene" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Car" parent="." instance=ExtResource( 1 )]
+position = Vector2( 510, 320 )
+SmokeParticle = ExtResource( 4 )
+
+[node name="Wheel" parent="." instance=ExtResource( 3 )]
+position = Vector2( 508, 153 )
+
+[node name="Wheel2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 363, 304 )
+
+[node name="Wheel_3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 96, 530 )
+
+[node name="Wheel4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 923, 505 )
+
+[node name="Wheel5" parent="." instance=ExtResource( 3 )]
+position = Vector2( 942, 62 )
+
+[node name="Wheel6" parent="." instance=ExtResource( 3 )]
+position = Vector2( 311, 94 )
+
+[node name="Wheel7" parent="." instance=ExtResource( 3 )]
+position = Vector2( 645, 84 )
+
+[node name="Wheel8" parent="." instance=ExtResource( 3 )]
+position = Vector2( 513, 390 )
+
+[node name="Wheel9" parent="." instance=ExtResource( 3 )]
+position = Vector2( 169, 286 )
+
+[node name="Wheel10" parent="." instance=ExtResource( 3 )]
+position = Vector2( 248, 424 )
+
+[node name="Wheel11" parent="." instance=ExtResource( 3 )]
+position = Vector2( 731, 307 )
+
+[node name="Wheel12" parent="." instance=ExtResource( 3 )]
+position = Vector2( 807, 456 )
+
+[node name="Wheel13" parent="." instance=ExtResource( 3 )]
+position = Vector2( 786, 141 )
+
+[node name="Wheel14" parent="." instance=ExtResource( 3 )]
+position = Vector2( 397, 475 )
+
+[node name="Wheel15" parent="." instance=ExtResource( 3 )]
+position = Vector2( 371, 194 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 512, 300 )
+current = true
+
+[node name="WarningLeft" type="ColorRect" parent="."]
+margin_right = 25.0
+margin_bottom = 640.0
+color = Color( 1, 0, 0, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WarningLeft"]
+anims/BoundsWarning = SubResource( 1 )
+anims/RESET = SubResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="WarningLeft"]
+position = Vector2( 4, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WarningLeft/Area2D"]
+position = Vector2( 4.5, 308.5 )
+shape = SubResource( 5 )
+
+[node name="WarningRight" type="ColorRect" parent="."]
+margin_left = 1000.0
+margin_top = -3.0
+margin_right = 1025.0
+margin_bottom = 637.0
+color = Color( 1, 0, 0, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WarningRight"]
+anims/BoundsWarning = SubResource( 8 )
+anims/RESET = SubResource( 9 )
+
+[node name="Area2D" type="Area2D" parent="WarningRight"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WarningRight/Area2D"]
+position = Vector2( 17, 308.5 )
+shape = SubResource( 5 )
+
+[node name="WarningTop" type="ColorRect" parent="."]
+margin_left = 1020.0
+margin_right = 1045.0
+margin_bottom = 1280.0
+rect_rotation = 89.9999
+color = Color( 1, 0, 0, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WarningTop"]
+anims/BoundsWarning = SubResource( 6 )
+anims/RESET = SubResource( 7 )
+
+[node name="Area2D" type="Area2D" parent="WarningTop"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WarningTop/Area2D"]
+position = Vector2( 5.99893, 483 )
+shape = SubResource( 5 )
+
+[node name="WarningBottom" type="ColorRect" parent="."]
+margin_left = 1264.0
+margin_top = 575.0
+margin_right = 1289.0
+margin_bottom = 1855.0
+rect_rotation = 89.9999
+color = Color( 1, 0, 0, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WarningBottom"]
+anims/BoundsWarning = SubResource( 10 )
+anims/RESET = SubResource( 11 )
+
+[node name="Area2D" type="Area2D" parent="WarningBottom"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WarningBottom/Area2D"]
+position = Vector2( 18.9984, 740 )
+shape = SubResource( 5 )
+
+[node name="CrashOverlay" parent="." instance=ExtResource( 5 )]
+visible = false
+margin_left = 135.0
+margin_top = 141.0
+margin_right = 135.0
+margin_bottom = 141.0
+
+[node name="FinishOverlay" parent="." instance=ExtResource( 6 )]
+visible = false
+margin_left = 177.0
+margin_top = 157.0
+margin_right = 177.0
+margin_bottom = 157.0
+
+[node name="SolidBlock" parent="." instance=ExtResource( 7 )]
+modulate = Color( 0.984375, 0.173035, 0.173035, 1 )
+position = Vector2( 198, 196 )
+scale = Vector2( 2, 2 )
+
+[node name="SolidBlock2" parent="." instance=ExtResource( 7 )]
+modulate = Color( 0.968627, 0.219608, 0.67451, 1 )
+position = Vector2( 876, 305 )
+scale = Vector2( 2, 2 )
+
+[node name="SolidBlock3" parent="." instance=ExtResource( 7 )]
+position = Vector2( 607, 473 )
+scale = Vector2( 2, 2 )
+
+[node name="SolidBlock4" parent="." instance=ExtResource( 7 )]
+modulate = Color( 0.145098, 0.298039, 0.898039, 1 )
+position = Vector2( 617, 194 )
+scale = Vector2( 2, 2 )
