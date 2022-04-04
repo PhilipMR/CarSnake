@@ -115,10 +115,14 @@ func _process(delta):
 		# If turning clockwise, drift on left wheel, otherwise drift on right wheel.
 		if car.is_drifting_cw():
 			var left_track_point  = car_pos + car_back + car_left
+			if last_drift_left_points.size() > car_tail_capacity:
+				last_drift_left_points.pop_front()
 			last_drift_left_points.append(left_track_point)
 			last_drift_right_points.clear()
 		else:
 			var right_track_point = car_pos + car_back + car_right
+			if last_drift_right_points.size() > car_tail_capacity:
+				last_drift_right_points.pop_front()
 			last_drift_right_points.append(right_track_point)
 			last_drift_left_points.clear()
 		

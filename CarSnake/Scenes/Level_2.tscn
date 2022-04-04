@@ -198,11 +198,6 @@ anims/RESET = SubResource( 9 )
 position = Vector2( 18.9984, 740 )
 shape = SubResource( 3 )
 
-[node name="Car" parent="." instance=ExtResource( 2 )]
-position = Vector2( 525, 526 )
-INCREMENTAL_SPEED_MULTIPLIER = 0.9
-INCREMENTAL_TAIL_CAPACITY = 5.0
-
 [node name="Wheel" parent="." instance=ExtResource( 3 )]
 position = Vector2( 399, 402 )
 
@@ -247,3 +242,8 @@ position = Vector2( 591, 203 )
 
 [node name="Wheel15" parent="." instance=ExtResource( 3 )]
 position = Vector2( 640, 299 )
+
+[node name="Car" parent="." instance=ExtResource( 2 )]
+position = Vector2( 525, 526 )
+INCREMENTAL_SPEED_MULTIPLIER = 0.9
+INCREMENTAL_TAIL_CAPACITY = 5.0

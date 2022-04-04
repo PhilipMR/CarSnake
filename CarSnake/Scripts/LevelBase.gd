@@ -29,7 +29,7 @@ func _ready():
 			
 			var area = child.get_node("Area2D")
 			area.connect("body_entered", self, "_on_warning_entered", [child])
-			area.connect("body_exited",  self, "_on_warning_exited", [child])
+			area.connect("body_exited",  self, "_on_warning_exited",  [child])
 			
 	# Connect all block-car collision signals.
 	for child in self.get_children():
@@ -93,6 +93,9 @@ func _on_car_outro_complete():
 	
 # [ENGINE SIGNAL CALLBACK]
 func _on_crashed(how):
+	# Don't count collisions during the auto-drive (i.e. level outro) 
+	if $Car.is_driving_automatic():
+		return
 	print("Crashed against ", how)
 	crash()
 	
@@ -105,11 +108,15 @@ func _on_wheel_collected():
 	
 # [ENGINE SIGNAL CALLBACK]
 func _on_warning_entered(_body, warn):
+	if $Car.is_driving_automatic():
+		return
 	warn.get_node("AnimationPlayer").play("BoundsWarning")
 	
 	
 # [ENGINE SIGNAL CALLBACK]
 func _on_warning_exited(_body, warn):
+	if $Car.is_driving_automatic():
+		return
 	warn.get_node("AnimationPlayer").seek(0, true)
 	warn.get_node("AnimationPlayer").stop()
 

@@ -17,7 +17,7 @@ const TURN_SPEED_INC_PER_WHEEL = 20.0  # The turning speed increase per picked-u
 const CAR_HWIDTH               = 20.0  # The car's half-width (used in tail-collision checking)
 const CAR_HHEIGHT              = 20.0  # The car's half-height (used in tail-collision checking)
 const DRIFT_TURN_THRESHOLD     = 130.0 # The minimal average turning speed required to drift.  
-
+const DRIFT_SPEED_THRESHOLD    = 100.0 # The minimal movement speed required to drift.
 
 var forward_dir          : Vector2
 onready var speed        = INITIAL_MOVE_SPEED * INITIAL_SPEED_MULTIPLIER
@@ -73,12 +73,17 @@ func is_driving():
 	return self.is_driving
 
 # [PUBLIC]
+func is_driving_automatic():
+	return self.is_driving_automatic
+
+# [PUBLIC]
 func stop_driving():
 	is_driving = false
 
 # [PUBLIC]
 func is_drifting():
-	return abs(avg_turn_rate) >= DRIFT_TURN_THRESHOLD
+	return (abs(avg_turn_rate) >= DRIFT_TURN_THRESHOLD) \
+	 and (speed >= DRIFT_SPEED_THRESHOLD)
 
 # [PUBLIC]
 func was_drifting():

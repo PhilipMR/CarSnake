@@ -28,6 +28,6 @@ func _process(delta):
 		tree_root.get_node("_TempObjects").add_child(smoke)
 	
 	var smoke_speed_multiplier = 1.0
-	if car.get_speed() > 0.0:
+	if car.get_speed() > 0.0 and not(car.is_driving_automatic()):
 		smoke_speed_multiplier = car.INITIAL_MOVE_SPEED / car.get_speed()
 	time_till_smoke_emit = SECONDS_PER_SMOKE_EMIT * smoke_speed_multiplier
