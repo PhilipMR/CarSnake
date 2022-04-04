@@ -1,0 +1,272 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Scripts/LevelBase.gd" type="Script" id=1]
+[ext_resource path="res://Objects/Car.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Objects/Wheel.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "BoundsWarning"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 3.86374, 3.24901, 0.0272047 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 0 ), Color( 1, 0, 0, 0.376471 ), Color( 1, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 0 ) ]
+}
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 15.5, 568.25 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "BoundsWarning"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 3.86374, 3.24901, 0.0272047 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 0 ), Color( 1, 0, 0, 0.376471 ), Color( 1, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "BoundsWarning"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 0 ), Color( 1, 0, 0, 0.658824 ), Color( 1, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "BoundsWarning"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 0 ), Color( 1, 0, 0, 0.658824 ), Color( 1, 0, 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 0 ) ]
+}
+
+[node name="Level_2" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="WarningLeft" type="ColorRect" parent="."]
+margin_right = 25.0
+margin_bottom = 640.0
+color = Color( 1, 0, 0, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WarningLeft"]
+anims/BoundsWarning = SubResource( 1 )
+anims/RESET = SubResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="WarningLeft"]
+position = Vector2( 4, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WarningLeft/Area2D"]
+position = Vector2( 4.5, 308.5 )
+shape = SubResource( 3 )
+
+[node name="WarningRight" type="ColorRect" parent="."]
+margin_left = 1000.0
+margin_top = -3.0
+margin_right = 1025.0
+margin_bottom = 637.0
+color = Color( 1, 0, 0, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WarningRight"]
+anims/BoundsWarning = SubResource( 4 )
+anims/RESET = SubResource( 5 )
+
+[node name="Area2D" type="Area2D" parent="WarningRight"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WarningRight/Area2D"]
+position = Vector2( 17, 308.5 )
+shape = SubResource( 3 )
+
+[node name="WarningTop" type="ColorRect" parent="."]
+margin_left = 1020.0
+margin_right = 1045.0
+margin_bottom = 1280.0
+rect_rotation = 89.9999
+color = Color( 1, 0, 0, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WarningTop"]
+anims/BoundsWarning = SubResource( 6 )
+anims/RESET = SubResource( 7 )
+
+[node name="Area2D" type="Area2D" parent="WarningTop"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WarningTop/Area2D"]
+position = Vector2( 5.99893, 483 )
+shape = SubResource( 3 )
+
+[node name="WarningBottom" type="ColorRect" parent="."]
+margin_left = 1264.0
+margin_top = 575.0
+margin_right = 1289.0
+margin_bottom = 1855.0
+rect_rotation = 89.9999
+color = Color( 1, 0, 0, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WarningBottom"]
+anims/BoundsWarning = SubResource( 8 )
+anims/RESET = SubResource( 9 )
+
+[node name="Area2D" type="Area2D" parent="WarningBottom"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WarningBottom/Area2D"]
+position = Vector2( 18.9984, 740 )
+shape = SubResource( 3 )
+
+[node name="Car" parent="." instance=ExtResource( 2 )]
+position = Vector2( 525, 526 )
+INCREMENTAL_TAIL_CAPACITY = 5.0
+
+[node name="Wheel" parent="." instance=ExtResource( 3 )]
+position = Vector2( 399, 402 )
+
+[node name="Wheel2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 353, 235 )
+
+[node name="Wheel3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 519, 130 )
+
+[node name="Wheel4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 686, 230 )
+
+[node name="Wheel5" parent="." instance=ExtResource( 3 )]
+position = Vector2( 635, 397 )
+
+[node name="Wheel6" parent="." instance=ExtResource( 3 )]
+position = Vector2( 271, 342 )
+
+[node name="Wheel7" parent="." instance=ExtResource( 3 )]
+position = Vector2( 374, 111 )
+
+[node name="Wheel8" parent="." instance=ExtResource( 3 )]
+position = Vector2( 650, 95 )
+
+[node name="Wheel9" parent="." instance=ExtResource( 3 )]
+position = Vector2( 744, 345 )
+
+[node name="Wheel10" parent="." instance=ExtResource( 3 )]
+position = Vector2( 525, 400 )
+
+[node name="Wheel11" parent="." instance=ExtResource( 3 )]
+position = Vector2( 524, 289 )
+
+[node name="Wheel12" parent="." instance=ExtResource( 3 )]
+position = Vector2( 401, 326 )
+
+[node name="Wheel13" parent="." instance=ExtResource( 3 )]
+position = Vector2( 438, 200 )
+
+[node name="Wheel14" parent="." instance=ExtResource( 3 )]
+position = Vector2( 591, 203 )
+
+[node name="Wheel15" parent="." instance=ExtResource( 3 )]
+position = Vector2( 610, 311 )
+
+[node name="Wheel16" parent="." instance=ExtResource( 3 )]
+position = Vector2( 309, 414 )
+
+[node name="Wheel17" parent="." instance=ExtResource( 3 )]
+position = Vector2( 257, 248 )
+
+[node name="Wheel18" parent="." instance=ExtResource( 3 )]
+position = Vector2( 285, 151 )
+
+[node name="Wheel19" parent="." instance=ExtResource( 3 )]
+position = Vector2( 448, 73 )
+
+[node name="Wheel20" parent="." instance=ExtResource( 3 )]
+position = Vector2( 734, 161 )
+
+[node name="Wheel21" parent="." instance=ExtResource( 3 )]
+position = Vector2( 741, 426 )
+
+[node name="Wheel22" parent="." instance=ExtResource( 3 )]
+position = Vector2( 422, 490 )
+
+[node name="Wheel23" parent="." instance=ExtResource( 3 )]
+position = Vector2( 629, 491 )

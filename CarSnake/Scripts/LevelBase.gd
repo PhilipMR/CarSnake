@@ -92,7 +92,8 @@ func _on_car_outro_complete():
 	
 	
 # [ENGINE SIGNAL CALLBACK]
-func _on_crashed(_how):
+func _on_crashed(how):
+	print("Crashed against ", how)
 	crash()
 	
 	

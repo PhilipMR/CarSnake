@@ -9,12 +9,15 @@ export(float) var INITIAL_TAIL_CAPACITY        = 15
 export(float) var INCREMENTAL_TAIL_CAPACITY    = 7
 
 const INITIAL_MOVE_SPEED       = 50.0  # The movement speed that the car starts out with.
+const MAX_MOVE_SPEED           = 300   # The highest attainable movement speed.
 const INITIAL_TURN_SPEED       = 50.0  # The turning speed that the car starts out with.
+const MAX_TURN_SPEED           = 320   # The highest attainable turning speed.
 const MOVE_SPEED_INC_PER_WHEEL = 20.0  # The movement speed increase per picked-up wheel. 
 const TURN_SPEED_INC_PER_WHEEL = 20.0  # The turning speed increase per picked-up wheel.
 const CAR_HWIDTH               = 20.0  # The car's half-width (used in tail-collision checking)
 const CAR_HHEIGHT              = 20.0  # The car's half-height (used in tail-collision checking)
 const DRIFT_TURN_THRESHOLD     = 115.0 # The minimal average turning speed required to drift.  
+
 
 
 var forward_dir          : Vector2
@@ -58,8 +61,12 @@ func set_turning_right(tright):
 
 # [PUBLIC]	
 func pickup_wheel():
-	speed      += MOVE_SPEED_INC_PER_WHEEL * INCREMENTAL_SPEED_MULTIPLIER
+	speed += MOVE_SPEED_INC_PER_WHEEL * INCREMENTAL_SPEED_MULTIPLIER
+	speed = min(MAX_MOVE_SPEED, speed)
+	
 	turn_speed += TURN_SPEED_INC_PER_WHEEL * INCREMENTAL_SPEED_MULTIPLIER
+	turn_speed = min(MAX_TURN_SPEED, turn_speed)
+	
 	$CarTail.increase_length()
 
 # [PUBLIC]

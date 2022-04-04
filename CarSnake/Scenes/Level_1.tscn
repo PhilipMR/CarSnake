@@ -7,34 +7,55 @@
 [node name="Level_1" instance=ExtResource( 1 )]
 
 [node name="Wheel5" parent="." index="4" instance=ExtResource( 3 )]
-position = Vector2( 74, 200 )
+position = Vector2( 780, 365 )
 
-[node name="Wheel" parent="." index="5" instance=ExtResource( 3 )]
-position = Vector2( 810, 119 )
+[node name="Wheel6" parent="." index="5" instance=ExtResource( 3 )]
+position = Vector2( 655, 364 )
 
-[node name="Wheel2" parent="." index="6" instance=ExtResource( 3 )]
-position = Vector2( 451, 70 )
+[node name="Wheel7" parent="." index="6" instance=ExtResource( 3 )]
+position = Vector2( 426, 539 )
 
-[node name="Wheel3" parent="." index="7" instance=ExtResource( 3 )]
-position = Vector2( 405, 311 )
+[node name="Wheel8" parent="." index="7" instance=ExtResource( 3 )]
+position = Vector2( 200, 557 )
 
-[node name="Wheel4" parent="." index="8" instance=ExtResource( 3 )]
-position = Vector2( 902, 451 )
+[node name="Wheel9" parent="." index="8" instance=ExtResource( 3 )]
+position = Vector2( 95, 470 )
 
-[node name="SolidBlock3" parent="." index="9" instance=ExtResource( 2 )]
-margin_left = 72.0
-margin_top = 91.0
-margin_right = 402.0
-margin_bottom = 133.0
+[node name="Wheel10" parent="." index="9" instance=ExtResource( 3 )]
+position = Vector2( 99, 115 )
 
-[node name="SolidBlock2" parent="." index="10" instance=ExtResource( 2 )]
-margin_left = 591.0
-margin_top = 88.0
-margin_right = 701.0
-margin_bottom = 299.0
+[node name="Wheel11" parent="." index="10" instance=ExtResource( 3 )]
+position = Vector2( 616, 526 )
 
-[node name="SolidBlock" parent="." index="11" instance=ExtResource( 2 )]
-margin_left = 762.0
-margin_top = 399.0
-margin_right = 833.0
-margin_bottom = 505.0
+[node name="Wheel" parent="." index="11" instance=ExtResource( 3 )]
+position = Vector2( 522, 228 )
+
+[node name="Wheel2" parent="." index="12" instance=ExtResource( 3 )]
+position = Vector2( 604, 121 )
+
+[node name="Wheel3" parent="." index="13" instance=ExtResource( 3 )]
+position = Vector2( 873, 213 )
+
+[node name="Wheel4" parent="." index="14" instance=ExtResource( 3 )]
+position = Vector2( 898, 476 )
+
+[node name="Car" parent="." index="15"]
+INITIAL_SPEED_MULTIPLIER = 2.0
+
+[node name="SolidBlock" parent="." index="16" instance=ExtResource( 2 )]
+margin_left = 691.0
+margin_top = 421.0
+margin_right = 767.0
+margin_bottom = 560.0
+
+[node name="SolidBlock2" parent="." index="17" instance=ExtResource( 2 )]
+margin_left = 185.0
+margin_top = 150.0
+margin_right = 379.0
+margin_bottom = 516.0
+
+[node name="SolidBlock3" parent="." index="18" instance=ExtResource( 2 )]
+margin_left = 612.0
+margin_top = 194.0
+margin_right = 787.0
+margin_bottom = 319.0

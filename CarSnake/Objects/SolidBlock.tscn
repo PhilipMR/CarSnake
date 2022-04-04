@@ -3,6 +3,7 @@
 [ext_resource path="res://Scripts/SolidBlock.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
+resource_local_to_scene = true
 extents = Vector2( 20, 20 )
 
 [node name="SolidBlock" type="ColorRect"]
@@ -17,6 +18,5 @@ script = ExtResource( 1 )
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-visible = false
 position = Vector2( 20, 20 )
 shape = SubResource( 1 )
