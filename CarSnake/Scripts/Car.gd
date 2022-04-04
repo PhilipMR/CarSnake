@@ -16,8 +16,7 @@ const MOVE_SPEED_INC_PER_WHEEL = 20.0  # The movement speed increase per picked-
 const TURN_SPEED_INC_PER_WHEEL = 20.0  # The turning speed increase per picked-up wheel.
 const CAR_HWIDTH               = 20.0  # The car's half-width (used in tail-collision checking)
 const CAR_HHEIGHT              = 20.0  # The car's half-height (used in tail-collision checking)
-const DRIFT_TURN_THRESHOLD     = 115.0 # The minimal average turning speed required to drift.  
-
+const DRIFT_TURN_THRESHOLD     = 130.0 # The minimal average turning speed required to drift.  
 
 
 var forward_dir          : Vector2

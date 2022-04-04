@@ -25,7 +25,7 @@ position = Vector2( 953, 429 )
 position = Vector2( 785, 430 )
 
 [node name="Wheel" parent="." index="10" instance=ExtResource( 3 )]
-position = Vector2( 542, 314 )
+position = Vector2( 569, 342 )
 
 [node name="Wheel2" parent="." index="11" instance=ExtResource( 3 )]
 position = Vector2( 694, 232 )
@@ -36,20 +36,31 @@ position = Vector2( 712, 490 )
 [node name="Wheel4" parent="." index="13" instance=ExtResource( 3 )]
 position = Vector2( 250, 528 )
 
-[node name="Car" parent="." index="14"]
-position = Vector2( 502, 478 )
-INITIAL_SPEED_MULTIPLIER = 2.0
-INCREMENTAL_SPEED_MULTIPLIER = 2.0
-INITIAL_TAIL_CAPACITY = 5.0
-
-[node name="SolidBlock" parent="." index="15" instance=ExtResource( 2 )]
+[node name="SolidBlock" parent="." index="14" instance=ExtResource( 2 )]
 margin_left = 850.0
 margin_top = 153.0
 margin_right = 890.0
 margin_bottom = 441.0
+color = Color( 0.419608, 0.909804, 0.403922, 1 )
+
+[node name="SolidBlock3" parent="." index="15" instance=ExtResource( 2 )]
+margin_left = 523.0
+margin_top = 139.0
+margin_right = 563.0
+margin_bottom = 427.0
+rect_rotation = 34.0266
+rect_scale = Vector2( 1, 0.60134 )
+color = Color( 0.913725, 0.384314, 0.945098, 1 )
 
 [node name="SolidBlock2" parent="." index="16" instance=ExtResource( 2 )]
-margin_left = 122.0
+margin_left = 131.0
 margin_top = 166.0
-margin_right = 315.0
-margin_bottom = 484.0
+margin_right = 299.0
+margin_bottom = 447.0
+color = Color( 0.94902, 0.494118, 0.0941176, 1 )
+
+[node name="Car" parent="." index="17"]
+position = Vector2( 524, 535 )
+INITIAL_SPEED_MULTIPLIER = 2.0
+INCREMENTAL_SPEED_MULTIPLIER = 2.0
+INITIAL_TAIL_CAPACITY = 5.0
