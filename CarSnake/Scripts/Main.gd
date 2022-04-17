@@ -75,9 +75,8 @@ func _ready():
 		var file_name   = dir.get_next()
 		while file_name != "":
 			var next_track_name = "Track_" + str(track_count+1) + ".tscn"
-			if file_name != next_track_name:
-				break
-			track_count += 1
+			if file_name == next_track_name:
+				track_count += 1
 			file_name = dir.get_next()
 		assert(track_count > 0)
 		TRACKS_PER_CUP.append(track_count)
