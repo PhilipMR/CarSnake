@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Scripts/LevelBase.gd" type="Script" id=1]
+[ext_resource path="res://Objects/Wheel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Objects/Car.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Objects/Wheel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/LevelBase.gd" type="Script" id=3]
 
 [sub_resource type="Animation" id=1]
 resource_name = "BoundsWarning"
@@ -128,7 +128,7 @@ tracks/0/keys = {
 }
 
 [node name="Level_2" type="Node2D"]
-script = ExtResource( 1 )
+script = ExtResource( 3 )
 
 [node name="WarningLeft" type="ColorRect" parent="."]
 margin_right = 25.0
@@ -198,49 +198,49 @@ anims/RESET = SubResource( 9 )
 position = Vector2( 18.9984, 740 )
 shape = SubResource( 3 )
 
-[node name="Wheel" parent="." instance=ExtResource( 3 )]
+[node name="Wheel" parent="." instance=ExtResource( 1 )]
 position = Vector2( 399, 402 )
 
-[node name="Wheel2" parent="." instance=ExtResource( 3 )]
+[node name="Wheel2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 353, 235 )
 
-[node name="Wheel3" parent="." instance=ExtResource( 3 )]
+[node name="Wheel3" parent="." instance=ExtResource( 1 )]
 position = Vector2( 519, 130 )
 
-[node name="Wheel4" parent="." instance=ExtResource( 3 )]
+[node name="Wheel4" parent="." instance=ExtResource( 1 )]
 position = Vector2( 686, 230 )
 
-[node name="Wheel5" parent="." instance=ExtResource( 3 )]
+[node name="Wheel5" parent="." instance=ExtResource( 1 )]
 position = Vector2( 635, 397 )
 
-[node name="Wheel6" parent="." instance=ExtResource( 3 )]
+[node name="Wheel6" parent="." instance=ExtResource( 1 )]
 position = Vector2( 271, 342 )
 
-[node name="Wheel7" parent="." instance=ExtResource( 3 )]
+[node name="Wheel7" parent="." instance=ExtResource( 1 )]
 position = Vector2( 374, 111 )
 
-[node name="Wheel8" parent="." instance=ExtResource( 3 )]
+[node name="Wheel8" parent="." instance=ExtResource( 1 )]
 position = Vector2( 650, 95 )
 
-[node name="Wheel9" parent="." instance=ExtResource( 3 )]
+[node name="Wheel9" parent="." instance=ExtResource( 1 )]
 position = Vector2( 744, 345 )
 
-[node name="Wheel10" parent="." instance=ExtResource( 3 )]
+[node name="Wheel10" parent="." instance=ExtResource( 1 )]
 position = Vector2( 525, 400 )
 
-[node name="Wheel11" parent="." instance=ExtResource( 3 )]
+[node name="Wheel11" parent="." instance=ExtResource( 1 )]
 position = Vector2( 524, 289 )
 
-[node name="Wheel12" parent="." instance=ExtResource( 3 )]
+[node name="Wheel12" parent="." instance=ExtResource( 1 )]
 position = Vector2( 401, 326 )
 
-[node name="Wheel13" parent="." instance=ExtResource( 3 )]
+[node name="Wheel13" parent="." instance=ExtResource( 1 )]
 position = Vector2( 438, 200 )
 
-[node name="Wheel14" parent="." instance=ExtResource( 3 )]
+[node name="Wheel14" parent="." instance=ExtResource( 1 )]
 position = Vector2( 591, 203 )
 
-[node name="Wheel15" parent="." instance=ExtResource( 3 )]
+[node name="Wheel15" parent="." instance=ExtResource( 1 )]
 position = Vector2( 640, 299 )
 
 [node name="Car" parent="." instance=ExtResource( 2 )]

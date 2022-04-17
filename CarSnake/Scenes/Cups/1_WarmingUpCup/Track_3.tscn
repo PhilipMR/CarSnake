@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/LevelBase.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Car.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Sprites/wheel_slot.png" type="Texture" id=3]
+[ext_resource path="res://Objects/SolidBlock.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Objects/Wheel.tscn" type="PackedScene" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "BoundsWarning"
@@ -127,7 +128,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 0, 0, 0 ) ]
 }
 
-[node name="Level_Base" type="Node2D"]
+[node name="Level_3" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="WarningLeft" type="ColorRect" parent="."]
@@ -199,18 +200,50 @@ position = Vector2( 18.9984, 740 )
 shape = SubResource( 3 )
 
 [node name="Car" parent="." instance=ExtResource( 2 )]
-position = Vector2( 515, 463 )
+position = Vector2( 878, 502 )
+INITIAL_SPEED_MULTIPLIER = 5.0
+INCREMENTAL_SPEED_MULTIPLIER = 0.8
+INITIAL_TAIL_CAPACITY = 5.0
+INCREMENTAL_TAIL_CAPACITY = 15.0
 
-[node name="ObjectiveMarkers" type="CanvasLayer" parent="."]
+[node name="Wheel" parent="." instance=ExtResource( 5 )]
+position = Vector2( 171, 401 )
 
-[node name="ColorRect" type="ColorRect" parent="ObjectiveMarkers"]
-visible = false
-margin_right = 284.0
-margin_bottom = 58.0
-color = Color( 1, 1, 1, 0.196078 )
+[node name="Wheel2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 813, 370 )
 
-[node name="WheelSlot" type="Sprite" parent="ObjectiveMarkers"]
-visible = false
-position = Vector2( 30, 30 )
-scale = Vector2( 0.160156, 0.160156 )
-texture = ExtResource( 3 )
+[node name="Wheel3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 286, 95 )
+
+[node name="Wheel4" parent="." instance=ExtResource( 5 )]
+position = Vector2( 491, 292 )
+
+[node name="Wheel5" parent="." instance=ExtResource( 5 )]
+position = Vector2( 709, 130 )
+
+[node name="Wheel6" parent="." instance=ExtResource( 5 )]
+position = Vector2( 515, 544 )
+
+[node name="SolidBlock" parent="." instance=ExtResource( 4 )]
+margin_left = 326.0
+margin_top = 401.0
+margin_right = 687.0
+margin_bottom = 495.0
+rect_pivot_offset = Vector2( 203, 77 )
+color = Color( 0.101961, 0.486275, 0.933333, 1 )
+
+[node name="SolidBlock2" parent="." instance=ExtResource( 4 )]
+margin_left = 642.0
+margin_top = 175.0
+margin_right = 754.0
+margin_bottom = 269.0
+rect_pivot_offset = Vector2( 203, 77 )
+color = Color( 0.101961, 0.486275, 0.933333, 1 )
+
+[node name="SolidBlock3" parent="." instance=ExtResource( 4 )]
+margin_left = 231.0
+margin_top = 143.0
+margin_right = 343.0
+margin_bottom = 237.0
+rect_pivot_offset = Vector2( 203, 77 )
+color = Color( 0.101961, 0.486275, 0.933333, 1 )
