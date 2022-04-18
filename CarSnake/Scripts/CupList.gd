@@ -2,9 +2,9 @@ extends Control
 
 export(PackedScene) var CupListItem
 
+signal cup_selected
 
 const ITEM_PADDING = 100
-
 
 func _ready():
 	for dummy in $List.get_children():
@@ -19,6 +19,7 @@ func _ready():
 		item.set_cup_title(cup[0])
 		item_height = item.get_rect().size.y
 		item.set_position(item.get_position() + Vector2(0, i * (item_height + ITEM_PADDING)))
+		item.connect("clicked", self, "emit_signal", ["cup_selected", cup[0]])
 		i += 1
 
 	var does_list_excess = i * (item_height + ITEM_PADDING) >= $MaskBottom.get_position().y
@@ -29,7 +30,6 @@ func _ready():
 func _on_VScrollBar_value_changed(value):
 	var pos = $List.get_position()
 	pos.y = -(value - $VScrollBar.get_min())
-	print (value - $VScrollBar.get_min())
 	$List.set_position(pos)
 	
 	

@@ -16,3 +16,17 @@ func _process(delta):
 	
 	set_frame_color(initial_color.darkened(alpha * MAX_DARKENING))
 	pass
+
+
+func _on_ButtonBG_gui_input(event):
+	if event is InputEventMouseButton:
+		if event.is_pressed():
+			if event.get_button_index() == BUTTON_LEFT:
+				get_tree().change_scene("res://Scenes/Menu_Main.tscn")
+
+
+func _on_GoText_gui_input(event):
+	if event is InputEventMouseButton:
+		if event.is_pressed():
+			if event.get_button_index() == BUTTON_LEFT:
+				get_tree().change_scene("res://Scenes/Menu_Main.tscn")

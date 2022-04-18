@@ -59,6 +59,9 @@ margin_bottom = 104.0
 rect_pivot_offset = Vector2( 226, 119 )
 color = Color( 0.93, 0.1209, 0.1209, 1 )
 script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ButtonFrame" type="Sprite" parent="GoButton"]
 position = Vector2( 3, 0 )
@@ -68,8 +71,14 @@ offset = Vector2( 0, -4 )
 [node name="GoText" type="RichTextLabel" parent="GoButton"]
 margin_left = -125.0
 margin_top = -76.0
-margin_right = 519.0
-margin_bottom = 224.0
+margin_right = 291.0
+margin_bottom = 164.0
 rect_scale = Vector2( 0.650665, 0.650665 )
 custom_fonts/normal_font = SubResource( 2 )
 text = "GO!"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="gui_input" from="GoButton/ButtonBG" to="GoButton/ButtonBG" method="_on_ButtonBG_gui_input"]
+[connection signal="gui_input" from="GoButton/GoText" to="GoButton/ButtonBG" method="_on_GoText_gui_input"]

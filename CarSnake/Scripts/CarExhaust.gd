@@ -20,7 +20,7 @@ func _process(delta):
 	# Emit the smoke out the car's back.
 	var dir = -car.get_forward_dir()
 	var smokes_to_emit = (randi() % 2) + 1
-	var tree_root = get_tree().get_root().get_child(0)
+	var tree_root = get_tree().get_root().get_child(1)
 	for _i in range(0, smokes_to_emit):
 		var smoke = SmokeParticle.instance()
 		smoke.set_position(get_global_position())

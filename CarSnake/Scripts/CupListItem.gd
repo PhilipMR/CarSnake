@@ -1,5 +1,7 @@
 extends Control
 
+signal clicked
+
 const LOCKED_CUP_TEXT = "? ? ? ? ? ? ? ?"
 
 const SWITCH_TIME_SECS     = 1.0
@@ -30,6 +32,13 @@ func _process(delta):
 		if progress >= 1:
 			is_switching = false
 			time_till_switch = SWITCH_TIME_SECS
+
+func _gui_input(event):
+	if event is InputEventMouseButton:
+		if event.is_pressed():
+			if event.button_index == BUTTON_LEFT:
+				emit_signal("clicked")
+				
 
 
 func disable():
