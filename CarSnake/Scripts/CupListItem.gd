@@ -1,39 +1,38 @@
 extends Control
 
+export(Texture) var SeparatorTex
+
 signal clicked
 
 const LOCKED_CUP_TEXT = "? ? ? ? ? ? ? ?"
 
-const SWITCH_TIME_SECS     = 1.0
-const SWITCH_DURATION_SECS = 1.0
+var is_enabled = true
 
-var from = 0
-var next_goal = 0
-var is_switching = false
-var time_till_switch = SWITCH_TIME_SECS
-var time_switching = 0
-
-func _ready():
-	randomize()
-	$ProgressBar.set_value(rand_range($ProgressBar.get_min(), $ProgressBar.get_max()))
-
-func _process(delta):
-	if not(is_switching):
-		time_till_switch -= delta
-		if time_till_switch <= 0:
-			from = $ProgressBar.get_value()
-			next_goal = rand_range($ProgressBar.get_min(), $ProgressBar.get_max())
-			is_switching = true
-			time_switching = 0
+func _enter_tree():
+	var list_index = 0
+	for child in get_parent().get_children():
+		if child == self:
+			break
+		list_index += 1
+	if list_index >= Global.UserData.cups_progress.size():
+		$ProgressBar.set_value(0)
 	else:
-		time_switching += delta
-		var progress = min(1, time_switching / SWITCH_DURATION_SECS)
-		$ProgressBar.set_value(lerp(from, next_goal, progress))
-		if progress >= 1:
-			is_switching = false
-			time_till_switch = SWITCH_TIME_SECS
+		$ProgressBar.set_value(Global.UserData.cups_progress[list_index])
+		$ProgressBar.set_max(Global.TRACKS_PER_CUP[list_index])
+		var pb_rect = $ProgressBar.get_rect()
+		var num_tracks = Global.TRACKS_PER_CUP[list_index]
+		var step_x = pb_rect.size.x / num_tracks
+		for i in range(0, num_tracks-1):
+			var sep = Sprite.new()
+			sep.set_texture(SeparatorTex)
+			sep.set_position(Vector2(pb_rect.position.x + step_x*(i+1), pb_rect.position.y + SeparatorTex.get_height()*0.4))
+			sep.set_scale(Vector2(1.5, 1.0))
+			add_child(sep)
+
 
 func _gui_input(event):
+	if not(is_enabled):
+		return
 	if event is InputEventMouseButton:
 		if event.is_pressed():
 			if event.button_index == BUTTON_LEFT:
@@ -44,6 +43,8 @@ func _gui_input(event):
 func disable():
 	$CupTitle.set_text(LOCKED_CUP_TEXT)
 	$Background.set_self_modulate(Color.white.darkened(0.5))
+	is_enabled = false
+
 
 func set_cup_title(title):
 	$CupTitle.set_text(title)

@@ -24,9 +24,10 @@ func _on_track_completed(track):
 	
 	var completed_cup = ((current_track_idx+1) == current_cup_tracks.size())
 	if completed_cup:
-		$UI/FinishOverlay.set_visible(true)
-		if Global.UserData.cups_unlocked <= current_cup_idx:
-			Global.UserData.cups_unlocked = current_cup_idx+1
+		#$UI/FinishOverlay.set_visible(true)
+		if Global.UserData.cups_unlocked <= (current_cup_idx+1):
+			Global.UserData.cups_unlocked = current_cup_idx+2
+		get_tree().change_scene("res://Scenes/Menu_Main.tscn")
 	else:
 		for obj in $_TempObjects.get_children():
 			obj.queue_free()
@@ -49,4 +50,4 @@ func begin_cup(cup_idx, first_track = 0):
 
 
 func _ready():
-	begin_cup(0)
+	begin_cup(Global.next_cup_id)

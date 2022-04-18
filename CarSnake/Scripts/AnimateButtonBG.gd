@@ -20,13 +20,13 @@ func _process(delta):
 
 func _on_ButtonBG_gui_input(event):
 	if event is InputEventMouseButton:
-		if event.is_pressed():
+		if not(event.is_pressed()):
 			if event.get_button_index() == BUTTON_LEFT:
 				get_tree().change_scene("res://Scenes/Menu_Main.tscn")
 
 
 func _on_GoText_gui_input(event):
 	if event is InputEventMouseButton:
-		if event.is_pressed():
+		if not(event.is_pressed()):
 			if event.get_button_index() == BUTTON_LEFT:
 				get_tree().change_scene("res://Scenes/Menu_Main.tscn")

@@ -16,7 +16,13 @@ func _ready():
 	for cup in Global.CUPS:
 		var item = CupListItem.instance()
 		$List.add_child(item)
-		item.set_cup_title(cup[0])
+		
+		var is_name_hidden = (i+1) > Global.UserData.cups_unlocked
+		if is_name_hidden:
+			item.disable()
+		else:
+			item.set_cup_title(cup[0])
+			
 		item_height = item.get_rect().size.y
 		item.set_position(item.get_position() + Vector2(0, i * (item_height + ITEM_PADDING)))
 		item.connect("clicked", self, "emit_signal", ["cup_selected", cup[0]])

@@ -1,31 +1,17 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Objects/CupList.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/coins.png" type="Texture" id=2]
 [ext_resource path="res://Fonts/ERASBD.TTF" type="DynamicFontData" id=3]
-[ext_resource path="res://Sprites/treasure.png" type="Texture" id=4]
+[ext_resource path="res://Theme_CarSnake.tres" type="Theme" id=4]
 [ext_resource path="res://Sprites/exclamation.png" type="Texture" id=5]
-[ext_resource path="res://Sprites/back.png" type="Texture" id=6]
 [ext_resource path="res://Scripts/Menu_Main.gd" type="Script" id=7]
+[ext_resource path="res://Sprites/chest.png" type="Texture" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 36
 use_filter = true
 font_data = ExtResource( 3 )
-
-[sub_resource type="StyleBoxTexture" id=3]
-texture = ExtResource( 6 )
-region_rect = Rect2( 0, 0, 64, 64 )
-modulate_color = Color( 0.79, 0.79, 0.79, 1 )
-
-[sub_resource type="StyleBoxTexture" id=4]
-texture = ExtResource( 6 )
-region_rect = Rect2( 0, 0, 64, 64 )
-modulate_color = Color( 0.51, 0.51, 0.51, 1 )
-
-[sub_resource type="StyleBoxTexture" id=2]
-texture = ExtResource( 6 )
-region_rect = Rect2( 0, 0, 64, 64 )
 
 [node name="Menu_Main" type="Control"]
 anchor_right = 1.0
@@ -47,19 +33,9 @@ margin_top = 142.0
 margin_right = 1010.0
 margin_bottom = 698.0
 
-[node name="Treasure" type="Sprite" parent="."]
-light_mask = 0
-position = Vector2( 850, 67 )
-texture = ExtResource( 4 )
-
-[node name="Exclamation" type="Sprite" parent="Treasure"]
-light_mask = 0
-position = Vector2( 43, -29 )
-texture = ExtResource( 5 )
-
 [node name="CoinIcon" type="Sprite" parent="."]
 light_mask = 2
-position = Vector2( 605, 50 )
+position = Vector2( 636, 50 )
 texture = ExtResource( 2 )
 offset = Vector2( 3, -2 )
 
@@ -75,17 +51,52 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Back" type="Button" parent="."]
+[node name="ColorRect" type="ColorRect" parent="CoinIcon"]
 light_mask = 0
-margin_left = 20.0
-margin_top = 23.0
-margin_right = 115.0
-margin_bottom = 100.0
-custom_styles/hover = SubResource( 3 )
-custom_styles/pressed = SubResource( 4 )
-custom_styles/normal = SubResource( 2 )
+margin_left = 32.0
+margin_top = 19.0
+margin_right = 175.0
+margin_bottom = 27.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Back" type="Button" parent="."]
+light_mask = 0
+margin_left = 20.0
+margin_top = 17.0
+margin_right = 140.0
+margin_bottom = 140.0
+rect_scale = Vector2( 0.75, 0.75 )
+theme = ExtResource( 4 )
+text = "<"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Treasure" type="Button" parent="."]
+light_mask = 0
+margin_left = 839.0
+margin_top = 20.0
+margin_right = 958.0
+margin_bottom = 145.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_scale = Vector2( 0.75, 0.75 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource( 4 )
+icon = ExtResource( 8 )
+clip_text = true
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Exclamation" type="Sprite" parent="Treasure"]
+light_mask = 0
+position = Vector2( 105.333, 16 )
+scale = Vector2( 1.33333, 1.33333 )
+texture = ExtResource( 5 )
 
 [connection signal="pressed" from="Back" to="." method="_on_Back_pressed"]

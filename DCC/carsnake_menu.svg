@@ -39,8 +39,8 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="0.23788814"
-     inkscape:cx="1122.1317"
-     inkscape:cy="-3050.3863"
+     inkscape:cx="3139.8867"
+     inkscape:cy="-4059.2638"
      inkscape:window-width="1841"
      inkscape:window-height="1057"
      inkscape:window-x="71"
@@ -3499,7 +3499,8 @@
        id="g6393"
        inkscape:export-filename="C:\Users\phili\Desktop\New folder\CarSnake\CarSnake\Sprites\treasure.png"
        inkscape:export-xdpi="25.400114"
-       inkscape:export-ydpi="25.400114">
+       inkscape:export-ydpi="25.400114"
+       transform="translate(-140.13939,33.366523)">
       <rect
          y="964.23541"
          x="750.74677"
@@ -3737,7 +3738,10 @@
     </g>
     <g
        transform="matrix(0.69972997,0,0,0.8357561,-391.55053,935.45322)"
-       id="g6541">
+       id="g6541"
+       inkscape:export-filename="C:\Users\phili\Desktop\New folder\CarSnake\CarSnake\Sprites\back.png"
+       inkscape:export-xdpi="25.400114"
+       inkscape:export-ydpi="25.400114">
       <rect
          ry="7.1556048"
          rx="3.6594634"
@@ -3765,5 +3769,17 @@
            inkscape:connector-curvature="0" />
       </g>
     </g>
+    <rect
+       style="fill:#c50000;fill-opacity:1;stroke:#000000;stroke-width:14.2041769;stroke-miterlimit:4;stroke-dasharray:none"
+       id="rect2107"
+       width="113.79582"
+       height="113.79582"
+       x="689.64368"
+       y="806.89978"
+       rx="4.8227549"
+       ry="11.394939"
+       inkscape:export-filename="C:\Users\phili\Desktop\CarSnake\CarSnake\Sprites\button.png"
+       inkscape:export-xdpi="25.400114"
+       inkscape:export-ydpi="25.400114" />
   </g>
 </svg>
