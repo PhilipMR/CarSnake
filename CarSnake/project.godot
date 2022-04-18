@@ -11,8 +11,12 @@ config_version=4
 [application]
 
 config/name="CarSnake"
-run/main_scene="res://Scenes/Main.tscn"
+run/main_scene="res://Scenes/Menu_Main.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Global="*res://Scripts/Global.gd"
 
 [input]
 
