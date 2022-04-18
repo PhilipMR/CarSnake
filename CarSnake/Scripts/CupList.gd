@@ -2,7 +2,7 @@ extends Control
 
 export(PackedScene) var CupListItem
 
-signal cup_selected
+signal cup_selected # False warning that it's not emitted (it is, on item.connect("clicked"))
 
 const ITEM_PADDING = 100
 

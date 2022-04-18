@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Objects/SolidBlock.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Objects/Wheel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Level_Base.tscn" type="PackedScene" id=3]
+
+[node name="Level_Prototype" instance=ExtResource( 3 )]
+
+[node name="Wheel5" parent="." index="4" instance=ExtResource( 2 )]
+position = Vector2( 57, 417 )
+
+[node name="Wheel6" parent="." index="5" instance=ExtResource( 2 )]
+position = Vector2( 368, 210 )
+
+[node name="Wheel7" parent="." index="6" instance=ExtResource( 2 )]
+position = Vector2( 953, 349 )
+
+[node name="Wheel8" parent="." index="7" instance=ExtResource( 2 )]
+position = Vector2( 787, 350 )
+
+[node name="Wheel9" parent="." index="8" instance=ExtResource( 2 )]
+position = Vector2( 953, 429 )
+
+[node name="Wheel10" parent="." index="9" instance=ExtResource( 2 )]
+position = Vector2( 785, 430 )
+
+[node name="Wheel" parent="." index="10" instance=ExtResource( 2 )]
+position = Vector2( 569, 342 )
+
+[node name="Wheel2" parent="." index="11" instance=ExtResource( 2 )]
+position = Vector2( 694, 232 )
+
+[node name="Wheel3" parent="." index="12" instance=ExtResource( 2 )]
+position = Vector2( 712, 490 )
+
+[node name="Wheel4" parent="." index="13" instance=ExtResource( 2 )]
+position = Vector2( 250, 528 )
+
+[node name="SolidBlock" parent="." index="14" instance=ExtResource( 1 )]
+margin_left = 850.0
+margin_top = 153.0
+margin_right = 890.0
+margin_bottom = 441.0
+color = Color( 0.419608, 0.909804, 0.403922, 1 )
+
+[node name="SolidBlock3" parent="." index="15" instance=ExtResource( 1 )]
+margin_left = 523.0
+margin_top = 139.0
+margin_right = 563.0
+margin_bottom = 427.0
+rect_rotation = 34.0266
+rect_scale = Vector2( 1, 0.60134 )
+color = Color( 0.913725, 0.384314, 0.945098, 1 )
+
+[node name="SolidBlock2" parent="." index="16" instance=ExtResource( 1 )]
+margin_left = 131.0
+margin_top = 166.0
+margin_right = 299.0
+margin_bottom = 447.0
+color = Color( 0.94902, 0.494118, 0.0941176, 1 )
+
+[node name="Car" parent="." index="17"]
+position = Vector2( 524, 535 )
+INITIAL_SPEED_MULTIPLIER = 2.0
+INCREMENTAL_SPEED_MULTIPLIER = 2.0
+INITIAL_TAIL_CAPACITY = 5.0

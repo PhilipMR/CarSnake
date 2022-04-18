@@ -19,9 +19,10 @@ var UserData = {
 
 
 # SHARED SCENE/INIT STATE
-const MAX_HEARTS = 3
-var hearts_remaining = MAX_HEARTS
-var next_cup_id      = 0  # Set on cup selection in main menu, read on game (Main) ready
+# Set on cup selection in main menu, read on game (Main) ready
+var hearts_remaining = 3
+var next_cup_id      = 0
+var next_track_id    = 0
 
 
 # GLOBAL INITIALIZATION

@@ -6,6 +6,7 @@ var current_cup_tracks = []
 
 func begin_next_track():
 	current_track_idx += 1
+	Global.next_track_id = current_track_idx
 	assert(current_cup_tracks.size() > current_track_idx)
 	
 	var track_class = load(current_cup_tracks[current_track_idx])
@@ -50,4 +51,4 @@ func begin_cup(cup_idx, first_track = 0):
 
 
 func _ready():
-	begin_cup(Global.next_cup_id)
+	begin_cup(Global.next_cup_id, Global.next_track_id)

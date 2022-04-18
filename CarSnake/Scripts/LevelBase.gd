@@ -40,6 +40,11 @@ func _ready():
 	$Car.connect("crashed_into_tail",     self, "_on_crashed", ["tail"])
 	$Car.connect("crashed_out_of_bounds", self, "_on_crashed", ["bounds"])
 	
+	# Show the right amount of hearts
+	$ObjectiveMarkers/Heart1/Cross.set_visible(Global.hearts_remaining < 1)
+	$ObjectiveMarkers/Heart2/Cross.set_visible(Global.hearts_remaining < 2)
+	$ObjectiveMarkers/Heart3/Cross.set_visible(Global.hearts_remaining < 3)
+	
 	# Start the game by revealing the first wheel.
 	reveal_next_wheel()
 	
@@ -73,6 +78,7 @@ func crash():
 		return
 	game_over = true
 	$Car.stop_driving()
+	Global.hearts_remaining = max(Global.hearts_remaining-1, 0)
 	emit_signal("level_failed")
 
 

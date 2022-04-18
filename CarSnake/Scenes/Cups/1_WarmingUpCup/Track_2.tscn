@@ -1,9 +1,12 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/LevelBase.gd" type="Script" id=1]
 [ext_resource path="res://Objects/Car.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sprites/wheel_slot.png" type="Texture" id=3]
 [ext_resource path="res://Objects/SolidBlock.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Objects/Wheel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Sprites/cross.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/heart.png" type="Texture" id=7]
 
 [sub_resource type="Animation" id=1]
 resource_name = "BoundsWarning"
@@ -247,3 +250,55 @@ margin_right = 343.0
 margin_bottom = 237.0
 rect_pivot_offset = Vector2( 203, 77 )
 color = Color( 0.101961, 0.486275, 0.933333, 1 )
+
+[node name="ObjectiveMarkers" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="ObjectiveMarkers"]
+margin_right = 115.0
+margin_bottom = 46.0
+color = Color( 1, 1, 1, 0.196078 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WheelSlot" type="Sprite" parent="ObjectiveMarkers"]
+visible = false
+position = Vector2( 30, 30 )
+scale = Vector2( 0.160156, 0.160156 )
+texture = ExtResource( 3 )
+
+[node name="Heart1" type="Sprite" parent="ObjectiveMarkers"]
+self_modulate = Color( 0.952941, 0.952941, 0.952941, 1 )
+position = Vector2( 23, 22 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 7 )
+
+[node name="Cross" type="Sprite" parent="ObjectiveMarkers/Heart1"]
+visible = false
+self_modulate = Color( 0.694118, 0.109804, 0.109804, 1 )
+position = Vector2( 0, 2 )
+texture = ExtResource( 6 )
+
+[node name="Heart2" type="Sprite" parent="ObjectiveMarkers"]
+self_modulate = Color( 0.952941, 0.952941, 0.952941, 1 )
+position = Vector2( 57, 22 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 7 )
+
+[node name="Cross" type="Sprite" parent="ObjectiveMarkers/Heart2"]
+visible = false
+self_modulate = Color( 0.694118, 0.109804, 0.109804, 1 )
+position = Vector2( 0, 2 )
+texture = ExtResource( 6 )
+
+[node name="Heart3" type="Sprite" parent="ObjectiveMarkers"]
+self_modulate = Color( 0.952941, 0.952941, 0.952941, 1 )
+position = Vector2( 92, 22 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 7 )
+
+[node name="Cross" type="Sprite" parent="ObjectiveMarkers/Heart3"]
+visible = false
+self_modulate = Color( 0.694118, 0.109804, 0.109804, 1 )
+position = Vector2( 0, 2 )
+texture = ExtResource( 6 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Theme_CarSnake.tres" type="Theme" id=2]
 [ext_resource path="res://Fonts/ERASBD.TTF" type="DynamicFontData" id=3]
@@ -6,6 +6,11 @@
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 64
 use_filter = true
 font_data = ExtResource( 3 )
 
@@ -19,15 +24,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Retry" type="Button" parent="."]
+[node name="Crashed" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Retry" type="Button" parent="Crashed"]
 margin_left = 144.0
 margin_top = 124.0
 margin_right = 519.0
-margin_bottom = 212.0
+margin_bottom = 247.0
 theme = ExtResource( 2 )
 text = "RETRY"
 
-[node name="GiveUp" type="Button" parent="."]
+[node name="GiveUp" type="Button" parent="Crashed"]
 margin_left = 204.0
 margin_top = 284.0
 margin_right = 579.0
@@ -36,7 +48,7 @@ rect_scale = Vector2( 0.680001, 0.680001 )
 theme = ExtResource( 2 )
 text = "GIVE UP"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="Text" type="RichTextLabel" parent="Crashed"]
 margin_left = 196.0
 margin_top = 31.0
 margin_right = 515.0
@@ -44,3 +56,29 @@ margin_bottom = 111.0
 custom_fonts/normal_font = SubResource( 1 )
 text = "YOU CRASHED!!!
 "
+
+[node name="GameOver" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Text" type="RichTextLabel" parent="GameOver"]
+margin_left = 121.0
+margin_top = 15.0
+margin_right = 556.0
+margin_bottom = 103.0
+custom_fonts/normal_font = SubResource( 2 )
+text = "GAME OVER"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Return" type="Button" parent="GameOver"]
+margin_left = -59.0
+margin_top = 123.0
+margin_right = 730.0
+margin_bottom = 246.0
+theme = ExtResource( 2 )
+text = "RETURN TO MENU"
+__meta__ = {
+"_edit_use_anchors_": false
+}

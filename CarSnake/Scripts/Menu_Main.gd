@@ -13,6 +13,7 @@ func get_money_str():
 func _ready():
 	$CupList.connect("cup_selected", self, "_on_cup_selected")
 	$CoinIcon/CoinAmount.set_text(get_money_str())
+	Global.hearts_remaining = 3
 
 func _on_cup_selected(cupname):
 	Global.next_cup_id = -1
@@ -21,6 +22,7 @@ func _on_cup_selected(cupname):
 			Global.next_cup_id = i
 			break
 	assert(Global.next_cup_id != -1)
+	Global.next_track_id = 0
 	get_tree().change_scene("res://Scenes/Main.tscn")
 
 
