@@ -38,10 +38,10 @@ __meta__ = {
 }
 
 [node name="CupTitle" type="RichTextLabel" parent="."]
-margin_left = 164.545
-margin_top = 45.4545
-margin_right = 771.545
-margin_bottom = 119.455
+margin_left = 165.0
+margin_top = 45.0
+margin_right = 772.0
+margin_bottom = 191.0
 custom_fonts/normal_font = SubResource( 1 )
 text = "[CUP TITLE]
 "
@@ -60,3 +60,16 @@ percent_visible = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ActivateBar" type="ColorRect" parent="."]
+margin_left = 22.0
+margin_top = 20.0
+margin_right = 745.0
+margin_bottom = 147.0
+color = Color( 1, 1, 1, 0.196078 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="gui_input" from="CupTitle" to="." method="_on_CupTitle_gui_input"]
+[connection signal="gui_input" from="ProgressBar" to="." method="_on_ProgressBar_gui_input"]

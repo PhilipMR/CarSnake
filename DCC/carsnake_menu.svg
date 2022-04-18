@@ -38,9 +38,9 @@
      inkscape:pagecheckerboard="1"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="0.23788814"
-     inkscape:cx="3139.8867"
-     inkscape:cy="-4059.2638"
+     inkscape:zoom="0.47577628"
+     inkscape:cx="3976.6557"
+     inkscape:cy="-3637.402"
      inkscape:window-width="1841"
      inkscape:window-height="1057"
      inkscape:window-x="71"
@@ -3779,6 +3779,56 @@
        rx="4.8227549"
        ry="11.394939"
        inkscape:export-filename="C:\Users\phili\Desktop\CarSnake\CarSnake\Sprites\button.png"
+       inkscape:export-xdpi="25.400114"
+       inkscape:export-ydpi="25.400114" />
+    <rect
+       y="997.60193"
+       x="960.95587"
+       height="128"
+       width="128"
+       id="rect2137"
+       style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:0.7487458;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <g
+       id="g2149"
+       transform="matrix(0.61100241,0,0,0.72564171,522.29556,909.44694)"
+       inkscape:export-filename="C:\Users\phili\Desktop\CarSnake\CarSnake\Sprites\chest.png"
+       inkscape:export-xdpi="25.400114"
+       inkscape:export-ydpi="25.400114">
+      <g
+         id="g2147"
+         style="stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none">
+        <rect
+           style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none"
+           id="rect2141"
+           width="94.511566"
+           height="41.577293"
+           x="772.07343"
+           y="203.64017" />
+        <path
+           inkscape:connector-curvature="0"
+           id="path2143"
+           style="fill:none;stroke:#ffffff;stroke-width:9.95670033;stroke-miterlimit:4;stroke-dasharray:none"
+           d="m 771.81706,173.19621 c 32.41772,-9.30622 63.80681,-7.17263 94.74281,0 v 31.51785 h -94.74281 z"
+           sodipodi:nodetypes="ccccc" />
+        <rect
+           style="fill:none;fill-opacity:1;stroke:#ffffff;stroke-width:10;stroke-miterlimit:4;stroke-dasharray:none"
+           id="rect2145"
+           width="23.088358"
+           height="16.612352"
+           x="806.86993"
+           y="203.80415" />
+      </g>
+    </g>
+    <rect
+       ry="7.4282012"
+       rx="0.057868354"
+       y="1299.6265"
+       x="1281.4059"
+       height="16"
+       width="4"
+       id="rect2169"
+       style="fill:#333333;fill-opacity:1;stroke:none;stroke-width:0.69077736;stroke-miterlimit:4;stroke-dasharray:none"
+       inkscape:export-filename="C:\Users\phili\Desktop\CarSnake\CarSnake\Sprites\separator.png"
        inkscape:export-xdpi="25.400114"
        inkscape:export-ydpi="25.400114" />
   </g>

@@ -1,23 +1,30 @@
 extends Node
 
-const WARMING_UP_CUP = ["WARMING UP CUP", "1_WarmingUpCup"]
-const VROOM_CUP      = ["VROOM CUP",      "2_VroomCup"]
-const HONK_CUP       = ["HONK CUP",       "3_HonkCup"]
+# GLOBAL LEVEL HIERARCHY / CUPS
+const CUPS = [\
+	["WARMING UP CUP", "1_WarmingUpCup"],		\
+	["VROOM CUP",      "2_VroomCup"], 			\
+	["HONK CUP",       "3_HonkCup"]				\
+]
 onready var TRACKS_PER_CUP = [] # Track/Level files are counted at startup (in respective cup dir)
 
-const CUPS = [WARMING_UP_CUP, VROOM_CUP, HONK_CUP]
 
 # USER SAVE DATA
+const MAX_MONEY = 9999999
 var UserData = {
-	"money": 0,
+	"money": 1000000,
 	"cups_unlocked": 1,
 	"cups_progress": [0, 0]
 }
 
-# Global state
-var next_cup_id = 0  # Set on cup selection in main menu, read on game (Main) ready
+
+# SHARED SCENE/INIT STATE
+const MAX_HEARTS = 3
+var hearts_remaining = MAX_HEARTS
+var next_cup_id      = 0  # Set on cup selection in main menu, read on game (Main) ready
 
 
+# GLOBAL INITIALIZATION
 func _ready():
 	for cup in Global.CUPS:
 		var cup_dir = "res://Scenes/Cups/" + cup[1]
